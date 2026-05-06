@@ -1,0 +1,57 @@
+/* Contenedor Principal */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Encabezados */
+h2 {
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.5rem;
+}
+
+/* Inputs y Textareas */
+.txt {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Evita que el input se salga del contenedor */
+}
+
+.txt:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+/* Botón Agregar */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent-color);
+  color: #0f172a;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+  background: var(--input-focus);
+  transform: translateY(-2px);
+}

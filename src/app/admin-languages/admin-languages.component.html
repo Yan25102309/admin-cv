@@ -1,0 +1,52 @@
+<div class="admin-container">
+    <!-- Formulario de Idiomas -->
+    <div class="admin-card">
+        <h2>{{ editMode ? 'Editar Idioma' : 'Agregar Nuevo Idioma' }}</h2>
+        <form (submit)="$event.preventDefault()">
+            <div class="admin-grid">
+                <div class="field">
+                    <label class="form-label">Nombre del Idioma</label>
+                    <input type="text" [(ngModel)]="myLanguage.idioma" name="idioma" class="admin-input" placeholder="Ej. Inglés">
+                </div>
+                
+                <div class="field">
+                    <label class="form-label">Nivel en Texto</label>
+                    <input type="text" [(ngModel)]="myLanguage.nivelTexto" name="nivelTexto" class="admin-input" placeholder="Ej. B2 - Intermedio">
+                </div>
+
+                <div class="field full-width">
+                    <label class="form-label">Porcentaje de dominio (0-100)</label>
+                    <input type="number" [(ngModel)]="myLanguage.nivelPorcentaje" name="nivelPorcentaje" class="admin-input" placeholder="85">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="admin-btn btn-save" (click)="AgregarIdioma()">
+                    {{ editMode ? 'Guardar Cambios' : 'Registrar Idioma' }}
+                </button>
+                <button type="button" class="admin-btn btn-cancel" *ngIf="editMode" (click)="LimpiarFormulario()">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabla/Lista de Idiomas -->
+    <div class="admin-card">
+        <h3>Idiomas en el CV</h3>
+        <div class="list-container">
+            <div class="certificate-item" *ngFor="let lang of languagesList">
+                <div class="info" (click)="seleccionarIdioma(lang)">
+                    <strong>{{ lang.idioma }}</strong>
+                    <span>Nivel: {{ lang.nivelTexto }} | {{ lang.nivelPorcentaje }}% de fluidez</span>
+                </div>
+                <button class="admin-btn btn-delete" (click)="deleteLanguage(lang.id)">Eliminar</button>
+            </div>
+            
+            <!-- Estado vacío -->
+            <div *ngIf="languagesList.length === 0" style="color: #94a3b8; text-align: center; padding: 20px;">
+                No se han registrado idiomas todavía.
+            </div>
+        </div>
+    </div>
+</div>

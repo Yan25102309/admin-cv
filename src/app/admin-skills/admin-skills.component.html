@@ -1,0 +1,55 @@
+<div class="admin-container">
+    <div class="admin-card">
+        <h2>{{ editMode ? 'Editar Habilidad' : 'Nueva Habilidad' }}</h2>
+        <form (submit)="$event.preventDefault()">
+            <div class="admin-grid">
+                <div class="field">
+                    <label class="form-label">Nombre de la Skill (ej. Angular)</label>
+                    <input type="text" [(ngModel)]="mySkill.nombre" name="nombre" class="admin-input">
+                </div>
+                
+                <div class="field">
+                    <label class="form-label">Área (ej. Frontend)</label>
+                    <input type="text" [(ngModel)]="mySkill.area" name="area" class="admin-input">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Porcentaje (0-100)</label>
+                    <input type="number" [(ngModel)]="mySkill.nivelPorcentaje" name="nivelPorcentaje" class="admin-input">
+                </div>
+
+                <div class="field" style="display: flex; flex-direction: row; align-items: center; gap: 10px; padding-top: 30px;">
+                    <input type="checkbox" [(ngModel)]="mySkill.destacado" name="destacado" style="width: 20px; height: 20px;">
+                    <label class="form-label" style="margin: 0;">¿Marcar como Destacado?</label>
+                </div>
+
+                <div class="field full-width">
+                    <label class="form-label">Sub-herramientas (separadas por comas)</label>
+                    <input type="text" [(ngModel)]="subHerramientasTexto" name="subHTxt" class="admin-input" placeholder="Ej: RxJS, Directivas, CLI">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="admin-btn btn-save" (click)="AgregarSkill()">
+                    {{ editMode ? 'Actualizar' : 'Agregar Skill' }}
+                </button>
+                <button type="button" class="admin-btn btn-cancel" *ngIf="editMode" (click)="LimpiarFormulario()">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="admin-card">
+        <h3>Habilidades Técnicas</h3>
+        <div class="list-container">
+            <div class="certificate-item" *ngFor="let skill of skillsList">
+                <div class="info" (click)="seleccionarSkill(skill)">
+                    <strong>{{ skill.nombre }} <small *ngIf="skill.destacado" style="color: #fbbf24;">★</small></strong>
+                    <span>{{ skill.area }} — {{ skill.nivelPorcentaje }}%</span>
+                </div>
+                <button class="admin-btn btn-delete" (click)="deleteSkill(skill.id)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

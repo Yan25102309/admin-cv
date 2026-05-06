@@ -1,0 +1,56 @@
+<div class="admin-container">
+    <!-- Formulario con el estilo de Grid de Education -->
+    <div class="admin-card">
+        <h2>{{ editMode ? 'Editar Certificación' : 'Ingresar Nueva Certificación' }}</h2>
+        <form (submit)="$event.preventDefault()">
+            <div class="admin-grid">
+                <div class="field full-width">
+                    <label class="form-label">Título del Certificado</label>
+                    <input type="text" [(ngModel)]="myCertificate.titulo" name="titulo" class="admin-input" placeholder="Ej. Azure Fundamentals">
+                </div>
+                
+                <div class="field">
+                    <label class="form-label">Ente Emisor</label>
+                    <input type="text" [(ngModel)]="myCertificate.emisor" name="emisor" class="admin-input" placeholder="Ej. Microsoft">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Fecha de Expedición</label>
+                    <input type="text" [(ngModel)]="myCertificate.fechaExpedicion" name="fechaExpedicion" class="admin-input" placeholder="Ej. Enero 2024">
+                </div>
+
+                <div class="field full-width">
+                    <label class="form-label">Estado o Enlace de Verificación</label>
+                    <input type="text" [(ngModel)]="myCertificate.estado" name="estado" class="admin-input" placeholder="URL del certificado">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="admin-btn btn-save" (click)="AgregarCertificado()">
+                    {{ editMode ? 'Guardar Cambios' : 'Agregar Certificado' }}
+                </button>
+                <button type="button" class="admin-btn btn-cancel" *ngIf="editMode" (click)="LimpiarFormulario()">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lista de Visualización con el estilo de WorkExperience -->
+    <div class="admin-card">
+        <h3>Certificados Registrados</h3>
+        <div class="list-container">
+            <div class="certificate-item" *ngFor="let cert of certificateList">
+                <div class="info" (click)="seleccionarCert(cert)">
+                    <strong>{{ cert.titulo }}</strong>
+                    <span>{{ cert.emisor }} | {{ cert.fechaExpedicion }}</span>
+                </div>
+                <button class="admin-btn btn-delete" (click)="deleteCertificate(cert.id)">Eliminar</button>
+            </div>
+            
+            <div *ngIf="certificateList.length === 0" style="color: #94a3b8; text-align: center; padding: 20px;">
+                No hay certificados registrados aún.
+            </div>
+        </div>
+    </div>
+</div>

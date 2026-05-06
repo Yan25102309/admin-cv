@@ -1,0 +1,133 @@
+/* Contenedor principal para dar espacio */
+.admin-container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header-section h2 {
+    color: #38bdf8; /* Azul celeste */
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Tarjetas oscuras */
+.admin-card {
+    background-color: #1e293b;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    border: 1px solid #334155;
+}
+
+/* El Grid para que no sea lineal */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 20px;
+}
+
+/* Etiquetas de los campos */
+.form-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #94a3b8; /* Gris azulado */
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Estilo de los Inputs y Textarea */
+.admin-input {
+    width: 100%;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.admin-input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 1px #38bdf8;
+}
+
+/* Ajuste para que los textos largos ocupen todo el ancho */
+textarea.admin-input {
+    grid-column: span 3;
+    resize: vertical;
+}
+
+/* Botones */
+.admin-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btn-save {
+    background-color: #0284c7;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #0369a1;
+}
+
+.btn-secondary {
+    background-color: #475569;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #ef4444;
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+/* Listado inferior */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #334155;
+    transition: background 0.2s;
+}
+
+.list-item:hover {
+    background-color: rgba(56, 189, 248, 0.05);
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+/* Responsivo para laptops pequeñas o tablets */
+@media (max-width: 900px) {
+    .admin-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    textarea.admin-input {
+        grid-column: span 2;
+    }
+}
+
+/* Responsivo para celulares */
+@media (max-width: 600px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+    textarea.admin-input {
+        grid-column: span 1;
+    }
+}

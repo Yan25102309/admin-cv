@@ -1,1 +1,132 @@
-/* You can add global styles to this file, and also import other style files */
+/* Reset y Configuración de Pantalla */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f172a; /* Fondo azul oscuro profundo */
+    color: #f1f5f9;
+    font-family: 'Inter', -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* --- DISEÑO DEL MENÚ (SIDEBAR) --- */
+/* Si tu menú está en un componente aparte, asegúrate que herede estas clases */
+.sidebar {
+    width: 250px;
+    background-color: #1e293b; /* Un tono más claro que el fondo */
+    height: 100vh;
+    padding: 30px 20px;
+    position: fixed;
+    border-right: 1px solid #334155;
+}
+
+.sidebar h1 {
+    color: #38bdf8;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.sidebar ul li a:hover, .sidebar ul li a.active {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+}
+
+/* --- CONTENEDOR DE CONTENIDO (DERECHA) --- */
+/* Este margen es para que el contenido no se meta debajo del menú fijo */
+.main-content {
+    margin-left: 250px; 
+    padding: 40px;
+    width: calc(100% - 250px);
+}
+
+/* --- ESTILOS COMPARTIDOS PARA TODAS LAS VISTAS --- */
+.admin-card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.txt, .admin-input {
+    width: 100%;
+    padding: 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background: #0284c7;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0369a1;
+}
+/* Agrega esto a tu styles.css para que el formulario sea en columnas */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .admin-grid {
+        grid-template-columns: 1fr; /* 1 columna en celulares */
+    }
+}
+/* Estilo para los nombres de los campos */
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #38bdf8; /* El azul celeste que te gusta */
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Ajuste para que los campos no se peguen */
+.field {
+    margin-bottom: 5px;
+}
+
+/* Para que los botones no se peguen al grid */
+.form-actions {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #334155;
+}

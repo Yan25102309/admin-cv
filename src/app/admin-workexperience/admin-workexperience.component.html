@@ -1,0 +1,78 @@
+<div class="admin-container">
+    <div class="header-section">
+        <h2>Gestión de Experiencia Profesional</h2>
+    </div>
+
+    <!-- Formulario de Experiencia -->
+    <div class="admin-card">
+        <form (submit)="$event.preventDefault()">
+            <div class="admin-grid">
+                
+                <div class="field">
+                    <label class="form-label">Empresa</label>
+                    <input type="text" class="admin-input" name="company" 
+                           placeholder="Ej. Google / Freelance" 
+                           [(ngModel)]="myExp.company">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Puesto</label>
+                    <input type="text" class="admin-input" name="position" 
+                           placeholder="Ej. Fullstack Developer" 
+                           [(ngModel)]="myExp.position">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Ubicación</label>
+                    <input type="text" class="admin-input" name="location" 
+                           placeholder="Ej. Remote / CDMX" 
+                           [(ngModel)]="myExp.location">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Fecha Inicio</label>
+                    <input type="text" class="admin-input" name="startDate" 
+                           placeholder="mm/yyyy" 
+                           [(ngModel)]="myExp.startDate">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Fecha Término</label>
+                    <input type="text" class="admin-input" name="endDate" 
+                           placeholder="Presente / mm/yyyy" 
+                           [(ngModel)]="myExp.endDate">
+                </div>
+
+                <!-- Campo ancho para logros -->
+                <div class="field" style="grid-column: span 3;">
+                    <label class="form-label">Logros y Responsabilidades</label>
+                    <textarea class="admin-input" name="accomplishments" rows="3"
+                              placeholder="Describe tus tareas principales..." 
+                              [(ngModel)]="myExp.accomplishments"></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions" style="margin-top: 20px;">
+                <button type="submit" class="admin-btn btn-save" (click)="AgregarExperiencia()">
+                    {{ editMode ? 'Guardar Cambios' : 'Agregar Experiencia' }}
+                </button>
+                <button type="button" *ngIf="editMode" class="admin-btn btn-secondary" 
+                        (click)="LimpiarFormulario()" style="margin-left: 10px;">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Listado de Experiencia -->
+    <div class="admin-card">
+        <h3>Historial Laboral</h3>
+        <div class="list-item" *ngFor="let exp of experienceList">
+            <div (click)="seleccionarExp(exp)" style="cursor: pointer; flex-grow: 1;">
+                <strong style="color: #38bdf8">{{exp.position}}</strong> en {{exp.company}}
+                <p style="font-size: 0.85rem; color: #94a3b8;">{{exp.startDate}} - {{exp.endDate}}</p>
+            </div>
+            <button class="admin-btn btn-delete" (click)="eliminarExp(exp.id)">Eliminar</button>
+        </div>
+    </div>
+</div>

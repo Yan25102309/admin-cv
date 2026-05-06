@@ -1,0 +1,56 @@
+<div class="admin-container">
+    <!-- Formulario de Intereses -->
+    <div class="admin-card">
+        <h2>{{ editMode ? 'Editar Interés' : 'Nuevo Interés' }}</h2>
+        <form (submit)="$event.preventDefault()">
+            <div class="admin-grid">
+                <div class="field">
+                    <label class="form-label">Nombre del Interés</label>
+                    <input type="text" [(ngModel)]="myInterest.nombre" name="nombre" class="admin-input" placeholder="Ej. Crochet">
+                </div>
+                
+                <div class="field">
+                    <label class="form-label">Tipo</label>
+                    <input type="text" [(ngModel)]="myInterest.tipo" name="tipo" class="admin-input" placeholder="Ej. Hobby o Deporte">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Icono (FontAwesome o URL)</label>
+                    <input type="text" [(ngModel)]="myInterest.icono" name="icono" class="admin-input" placeholder="Ej. fa-gamepad">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Descripción Breve</label>
+                    <input type="text" [(ngModel)]="myInterest.descripcion" name="descripcion" class="admin-input" placeholder="Ej. Me gusta diseñar amigurumis">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="admin-btn btn-save" (click)="AgregarInteres()">
+                    {{ editMode ? 'Actualizar' : 'Guardar Interés' }}
+                </button>
+                <button type="button" class="admin-btn btn-cancel" *ngIf="editMode" (click)="LimpiarFormulario()">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lista de Intereses -->
+    <div class="admin-card">
+        <h3>Intereses Registrados</h3>
+        <div class="list-container">
+            <div class="certificate-item" *ngFor="let item of interestsList">
+                <div class="info" (click)="seleccionarInteres(item)">
+                    <strong>{{ item.nombre }} <small style="color: #94a3b8; font-weight: normal;">({{ item.tipo }})</small></strong>
+                    <span>{{ item.descripcion }}</span>
+                </div>
+                <button class="admin-btn btn-delete" (click)="deleteInterest(item.id)">Eliminar</button>
+            </div>
+            
+            <div *ngIf="interestsList.length === 0" style="color: #94a3b8; text-align: center; padding: 20px;">
+                No hay intereses registrados aún.
+            </div>
+        </div>
+    </div>
+</div>

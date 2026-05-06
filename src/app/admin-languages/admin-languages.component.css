@@ -1,0 +1,129 @@
+.admin-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-card {
+    background: #1e293b; /* Fondo azul oscuro */
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #334155;
+}
+
+h2, h3 {
+    color: #f8fafc;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Rejilla para alinear los inputs */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-label {
+    color: #94a3b8;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.admin-input {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.admin-input:focus {
+    border-color: #38bdf8; /* Azul brillante al enfocar */
+}
+
+.form-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+}
+
+/* Botones */
+.admin-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.admin-btn:active {
+    transform: scale(0.98);
+}
+
+.btn-save {
+    background: #38bdf8;
+    color: #0f172a;
+}
+
+.btn-cancel {
+    background: #475569;
+    color: #f8fafc;
+}
+
+/* Lista de idiomas registrados */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.certificate-item {
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #334155;
+}
+
+.info {
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.info strong {
+    display: block;
+    color: #38bdf8;
+    font-size: 1.1rem;
+}
+
+.info span {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}

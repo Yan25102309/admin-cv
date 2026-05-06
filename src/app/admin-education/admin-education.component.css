@@ -1,0 +1,116 @@
+/* Contenedor principal */
+.admin-container {
+    padding: 20px;
+    background-color: transparent;
+    color: #f1f5f9;
+}
+
+/* Tarjeta oscura para el formulario y el listado */
+.admin-card {
+    background: #1e293b; /* El azul oscuro de tus otras capturas */
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Títulos */
+h2 {
+    color: #38bdf8;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* Grid para que los inputs no se amontonen */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas como en tu imagen */
+    gap: 15px;
+}
+
+/* Inputs con el estilo de Admin-CV */
+.admin-input {
+    width: 100%;
+    padding: 12px;
+    background: #0f172a; /* Fondo más oscuro para el input */
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.admin-input:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+/* Botones */
+.btn-save {
+    background: #0284c7;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.btn-delete {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Estilo del listado */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #334155;
+    transition: background 0.3s;
+}
+
+.list-item:hover {
+    background: #334155;
+}
+/* Reutilizamos la lógica del grid para mantener consistencia */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* En educación 2 columnas se ven mejor */
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column; /* Esto pone el label arriba del input */
+}
+
+.form-label {
+    font-size: 0.8rem;
+    color: #38bdf8; /* Azul para resaltar el nombre del campo */
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-input {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 10px;
+    color: white;
+}
+
+/* En tablets/celulares, una sola columna */
+@media (max-width: 768px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}

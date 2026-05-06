@@ -1,0 +1,90 @@
+<div class="admin-container">
+    <div class="header-section">
+        <h2>Gestión de Formación Académica</h2>
+    </div>
+
+    <div class="admin-card">
+        <form (submit)="$event.preventDefault()">
+            <div class="admin-grid">
+                
+                <!-- Institución -->
+                <div class="field">
+                    <label class="form-label">Institución</label>
+                    <input type="text" class="admin-input" name="institucion" 
+                           placeholder="Ej. Universidad Veracruzana" 
+                           [(ngModel)]="myEducation.institucion">
+                </div>
+
+                <!-- Programa -->
+                <div class="field">
+                    <label class="form-label">Programa / Carrera</label>
+                    <input type="text" class="admin-input" name="programa" 
+                           placeholder="Ej. Ingeniería de Software" 
+                           [(ngModel)]="myEducation.programa">
+                </div>
+
+                <!-- Modalidad -->
+                <div class="field">
+                    <label class="form-label">Modalidad</label>
+                    <input type="text" class="admin-input" name="modalidad" 
+                           placeholder="Ej. Presencial / Virtual" 
+                           [(ngModel)]="myEducation.modalidad">
+                </div>
+
+                <!-- Estado -->
+                <div class="field">
+                    <label class="form-label">Estado actual</label>
+                    <input type="text" class="admin-input" name="estado" 
+                           placeholder="Ej. Cursando / Titulada" 
+                           [(ngModel)]="myEducation.estado">
+                </div>
+
+                <!-- Ubicación -->
+                <div class="field">
+                    <label class="form-label">Ubicación</label>
+                    <input type="text" class="admin-input" name="ubicacion" 
+                           placeholder="Ej. Ixtaczoquitlán, Ver." 
+                           [(ngModel)]="myEducation.ubicacion">
+                </div>
+
+                <!-- Fechas -->
+                <div class="field">
+                    <label class="form-label">Fecha Inicio</label>
+                    <input type="text" class="admin-input" name="startDate" 
+                           placeholder="mm/yyyy" 
+                           [(ngModel)]="myEducation.startDate">
+                </div>
+
+                <div class="field">
+                    <label class="form-label">Fecha Fin</label>
+                    <input type="text" class="admin-input" name="endDate" 
+                           placeholder="mm/yyyy o Actual" 
+                           [(ngModel)]="myEducation.endDate">
+                </div>
+            </div>
+
+            <div class="form-actions" style="margin-top: 25px;">
+                <!-- Usamos btnTxt para que cambie entre "Agregar" y "Guardar" -->
+                <button type="submit" class="admin-btn btn-save" (click)="AgregarJob()">
+                    {{ editMode ? 'Guardar Cambios' : 'Agregar Educación' }}
+                </button>
+                <button type="button" *ngIf="editMode" class="admin-btn btn-secondary" 
+                        (click)="LimpiarFormulario()" style="margin-left: 10px;">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Listado para editar/eliminar -->
+    <div class="admin-card">
+        <h3>Trayectoria Académica</h3>
+        <div class="list-item" *ngFor="let edu of educationList">
+            <div (click)="seleccionarEdu(edu)" style="cursor: pointer; flex-grow: 1;">
+                <strong style="color: #38bdf8">{{edu.institucion}}</strong>
+                <p style="font-size: 0.9rem; color: #94a3b8; margin: 0;">{{edu.programa}} - {{edu.estado}}</p>
+            </div>
+            <button class="admin-btn btn-delete" (click)="deleteJob(edu.id)">Eliminar</button>
+        </div>
+    </div>
+</div>

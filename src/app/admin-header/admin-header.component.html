@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="header-view" style="text-align: center; margin-bottom: 20px;">
+    <div class="profile-pic-container">
+      <!-- Usamos photoUrl de tu componente -->
+      <img [src]="myHeader.photoUrl || 'assets/no-profile.png'" alt="Foto Perfil" class="profile-preview">
+    </div>
+    <h2 *ngIf="!isEditing">{{ myHeader.name }}</h2>
+    <p *ngIf="!isEditing" style="color: #38bdf8;">{{ myHeader.goalLife }}</p>
+  </div>
+
+  <form (submit)="GuardarHeader()">
+    <div class="grid-form">
+      <div class="full-width" *ngIf="isEditing">
+        <label>URL de la Imagen</label>
+        <input type="text" name="photo" [(ngModel)]="myHeader.photoUrl" class="txt">
+      </div>
+
+      <div class="field">
+        <label>Nombre</label>
+        <input type="text" name="name" [(ngModel)]="myHeader.name" class="txt" [disabled]="!isEditing">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="text" name="email" [(ngModel)]="myHeader.email" class="txt" [disabled]="!isEditing">
+      </div>
+
+      <div class="field">
+        <label>Meta Profesional</label>
+        <input type="text" name="goal" [(ngModel)]="myHeader.goalLife" class="txt" [disabled]="!isEditing">
+      </div>
+
+      <div class="field">
+        <label>Ubicación</label>
+        <input type="text" name="location" [(ngModel)]="myHeader.location" class="txt" [disabled]="!isEditing">
+      </div>
+
+      <div class="field">
+        <label>Teléfono</label>
+        <input type="text" name="phone" [(ngModel)]="myHeader.phoneNumber" class="txt" [disabled]="!isEditing">
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top: 20px; display: flex; gap: 10px;">
+      <button type="button" *ngIf="!isEditing" (click)="isEditing=true" class="btn">Editar Perfil</button>
+      <button type="submit" *ngIf="isEditing" class="btn" style="background: #22c55e;">Guardar Cambios</button>
+      <button type="button" *ngIf="isEditing" (click)="isEditing=false" class="btn" style="background: #64748b;">Cancelar</button>
+    </div>
+  </form>
+</div>

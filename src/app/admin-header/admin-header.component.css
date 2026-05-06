@@ -1,0 +1,37 @@
+.container {
+  max-width: 1000px; /* Un poco más ancho para las 2 columnas */
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #1e293b;
+  border-radius: 16px;
+}
+
+/* LA MAGIA: Esto pone los campos en dos columnas */
+.grid-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 15px; /* Espacio entre campos */
+  margin-bottom: 1.5rem;
+}
+
+/* Para que el botón ocupe todo el ancho */
+.btn-submit-container {
+  grid-column: span 2; 
+}
+
+.txt {
+  width: 100%;
+  padding: 12px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Responsivo: Si la pantalla es chica (celular), vuelve a 1 columna */
+@media (max-width: 600px) {
+  .grid-form {
+    grid-template-columns: 1fr;
+  }
+}

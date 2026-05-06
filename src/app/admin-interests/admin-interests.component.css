@@ -1,0 +1,77 @@
+.admin-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.admin-card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #334155;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    color: #94a3b8;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.admin-input {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.admin-input:focus {
+    border-color: #38bdf8;
+}
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.admin-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-save { background: #38bdf8; color: #0f172a; }
+.btn-cancel { background: #475569; color: white; }
+.btn-delete { background: #ef4444; color: white; font-size: 0.8rem; }
+
+.list-container { display: flex; flex-direction: column; gap: 10px; }
+
+.certificate-item {
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #334155;
+}
+
+.info { cursor: pointer; flex-grow: 1; }
+.info strong { display: block; color: #38bdf8; }
+.info span { color: #94a3b8; font-size: 0.85rem; }
