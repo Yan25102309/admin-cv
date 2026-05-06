@@ -13,10 +13,12 @@ export class AdminWorkexperienceComponent implements OnInit {
   myExp: any = this.initModel();
   editMode: boolean = false;
   currentId: string | null = null;
+  
+  // Variable auxiliar para el manejo del texto en el formulario
+  accomplishmentsInput: string = '';
 
   constructor(private firestore: AngularFirestore) {}
 
-  // Definimos el modelo limpio con todos los campos
   initModel() {
     return {
       startDate: '',
@@ -24,7 +26,7 @@ export class AdminWorkexperienceComponent implements OnInit {
       location: '',
       position: '',
       company: '',
-      accomplishments: ''
+      accomplishments: [] // Ahora es un arreglo vacío por defecto
     };
   }
 
@@ -34,14 +36,26 @@ export class AdminWorkexperienceComponent implements OnInit {
         const data = a.payload.doc.data() as any;
         const id = a.payload.doc.id;
 
+        // METODO DE SEGURIDAD: Normalizamos los logros. 
+        // Si es un arreglo lo dejamos tal cual, si es string lo metemos en un arreglo, 
+        // si no existe usamos arreglo vacío.
+        let normalizedAccomplishments: string[] = [];
+        const rawData = data.accomplishments || data.accoplishment || data.accomplishment || [];
+        
+        if (Array.isArray(rawData)) {
+          normalizedAccomplishments = rawData;
+        } else if (typeof rawData === 'string' && rawData.trim() !== '') {
+          normalizedAccomplishments = [rawData];
+        }
+
         return {
           id,
           position: data.position || '',
           startDate: data.startDate || '',
           endDate: data.endDate || '',
           location: data.location || '',
-          company: data.company || data['company '] || '', 
-          accomplishments: data.accomplishments || data.accoplishment || data.accomplishment || ''
+          company: data.company || data['company '] || '',
+          accomplishments: normalizedAccomplishments
         };
       }))
     ).subscribe(data => {
@@ -50,6 +64,11 @@ export class AdminWorkexperienceComponent implements OnInit {
   }
 
   AgregarExperiencia() {
+    // Convertimos el texto del textarea en un arreglo real antes de enviar a Firebase
+    this.myExp.accomplishments = this.accomplishmentsInput.split(',')
+      .map(item => item.trim())
+      .filter(item => item !== '');
+
     if (this.editMode && this.currentId) {
       this.firestore.collection('work-experience').doc(this.currentId).update(this.myExp)
         .then(() => this.LimpiarFormulario());
@@ -60,8 +79,17 @@ export class AdminWorkexperienceComponent implements OnInit {
   }
 
   seleccionarExp(item: any) {
-    this.myExp = { ...item }; 
     this.currentId = item.id;
+    // Creamos una copia para no modificar la lista directamente
+    this.myExp = { ...item };
+    
+    // Convertimos el arreglo de Firebase en texto separado por comas para el input
+    if (Array.isArray(item.accomplishments)) {
+      this.accomplishmentsInput = item.accomplishments.join(', ');
+    } else {
+      this.accomplishmentsInput = item.accomplishments || '';
+    }
+    
     this.editMode = true;
   }
 
@@ -73,6 +101,7 @@ export class AdminWorkexperienceComponent implements OnInit {
 
   LimpiarFormulario() {
     this.myExp = this.initModel();
+    this.accomplishmentsInput = ''; // Limpiamos el texto auxiliar
     this.editMode = false;
     this.currentId = null;
   }

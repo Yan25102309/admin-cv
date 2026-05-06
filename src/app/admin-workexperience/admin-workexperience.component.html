@@ -43,12 +43,12 @@
                            [(ngModel)]="myExp.endDate">
                 </div>
 
-                <!-- Campo ancho para logros -->
+                <!-- Campo ancho para logros corregido -->
                 <div class="field" style="grid-column: span 3;">
-                    <label class="form-label">Logros y Responsabilidades</label>
+                    <label class="form-label">Logros y Responsabilidades (Separar por comas)</label>
                     <textarea class="admin-input" name="accomplishments" rows="3"
-                              placeholder="Describe tus tareas principales..." 
-                              [(ngModel)]="myExp.accomplishments"></textarea>
+                              placeholder="Ej: Liderazgo de equipo, Optimización SQL, Desarrollo API..." 
+                              [(ngModel)]="accomplishmentsInput"></textarea>
                 </div>
             </div>
 
@@ -71,6 +71,10 @@
             <div (click)="seleccionarExp(exp)" style="cursor: pointer; flex-grow: 1;">
                 <strong style="color: #38bdf8">{{exp.position}}</strong> en {{exp.company}}
                 <p style="font-size: 0.85rem; color: #94a3b8;">{{exp.startDate}} - {{exp.endDate}}</p>
+                <!-- Opcional: Mini previsualización de logros -->
+                <p style="font-size: 0.75rem; color: #64748b;" *ngIf="exp.accomplishments">
+                    {{ exp.accomplishments.length }} logros registrados
+                </p>
             </div>
             <button class="admin-btn btn-delete" (click)="eliminarExp(exp.id)">Eliminar</button>
         </div>
